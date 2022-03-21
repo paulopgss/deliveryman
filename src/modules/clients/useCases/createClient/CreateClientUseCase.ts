@@ -10,7 +10,7 @@ export class CreateClientUseCase {
   async execute({ username, password }: ICreateClient) {
     // Validate user unique
     const clientExist = await prisma.clients.findFirst({
-      where: { username: { mode: "insensitive" } },
+      where: { username: { equals: username, mode: "insensitive" } },
     });
 
     if (clientExist) {
